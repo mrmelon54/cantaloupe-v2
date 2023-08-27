@@ -9,11 +9,11 @@ import (
 	"github.com/disgoorg/disgo/bot"
 	"github.com/disgoorg/disgo/cache"
 	"github.com/disgoorg/disgo/gateway"
+	_ "github.com/joho/godotenv/autoload" // loads .env file
 	"github.com/robfig/cron/v3"
 	"log"
+	"os"
 )
-
-var token string
 
 var intents = []gateway.Intents{
 	gateway.IntentGuilds,
@@ -23,16 +23,20 @@ var intents = []gateway.Intents{
 type ScheduledJob interface {
 	cron.Job
 	cron.Schedule
-	Init(client bot.Client)
+	Init(client bot.Client, debug bool)
 }
 
 var jobList = []ScheduledJob{
 	&jobs.MelonBirthday{},
 }
 
+var debugMode bool
+
 func main() {
-	flag.StringVar(&token, "t", "", "Discord bot token")
+	flag.BoolVar(&debugMode, "d", false, "Enable debug mode")
 	flag.Parse()
+
+	token := os.Getenv("TOKEN")
 
 	client, err := disgo.New(token, bot.WithCacheConfigOpts(
 		cache.WithCaches(cache.FlagVoiceStates, cache.FlagMembers, cache.FlagChannels, cache.FlagGuilds, cache.FlagRoles),
@@ -47,7 +51,7 @@ func main() {
 	log.Println("[Cantaloupe] Loading jobs...")
 	cr := cron.New()
 	for _, i := range jobList {
-		i.Init(client)
+		i.Init(client, debugMode)
 		cr.Schedule(i, i)
 	}
 

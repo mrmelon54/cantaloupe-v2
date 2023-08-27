@@ -34,6 +34,18 @@ var nextYearTestData = []nextYearItem{
 				time.Date(2000, time.December, 1, 0, 0, 0, 0, time.UTC),
 				time.Date(2000, time.December, 25, 9, 0, 0, 0, time.UTC),
 			},
+			{
+				time.Date(2000, time.December, 25, 8, 0, 0, 0, time.UTC),
+				time.Date(2000, time.December, 25, 9, 0, 0, 0, time.UTC),
+			},
+			{
+				time.Date(2000, time.December, 25, 9, 0, 0, 0, time.UTC),
+				time.Date(2001, time.December, 25, 9, 0, 0, 0, time.UTC),
+			},
+			{
+				time.Date(2000, time.December, 26, 0, 0, 0, 0, time.UTC),
+				time.Date(2001, time.December, 25, 9, 0, 0, 0, time.UTC),
+			},
 		},
 	},
 }

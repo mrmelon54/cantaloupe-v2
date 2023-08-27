@@ -14,19 +14,28 @@ var (
 	melonBirthdayNext    = utils.NextYear(time.August, 28, 0, 0)
 	melonUserID          = snowflake.MustParse("222344019458392065")
 	melonBirthdayChannel = snowflake.MustParse("577879389279223808")
-	melonBirthdayMessage = fmt.Sprintf("Hey @everyone :\\n\\nToday (28th August) is the birthday of <@%s> .\\nWish <@%s> a happy birthday when he gets online :cake: ", melonUserID, melonUserID)
+	melonDebugChannel    = snowflake.MustParse("1145454989649645618")
+	melonBirthdayMessage = fmt.Sprintf("Hey @everyone:\n\nToday (28th August) is the birthday of <@%s>.\n\nWish <@%s> a happy birthday when he gets online :cake:", melonUserID, melonUserID)
 )
 
 type MelonBirthday struct {
-	client bot.Client
+	client  bot.Client
+	debug   bool
+	channel snowflake.ID
 }
 
-func (m *MelonBirthday) Init(client bot.Client) {
+func (m *MelonBirthday) Init(client bot.Client, debug bool) {
 	m.client = client
+	m.debug = debug
+	if debug {
+		m.channel = melonDebugChannel
+	} else {
+		m.channel = melonBirthdayChannel
+	}
 }
 
 func (m *MelonBirthday) Run() {
-	_, err := m.client.Rest().CreateMessage(melonBirthdayChannel, discord.MessageCreate{
+	_, err := m.client.Rest().CreateMessage(m.channel, discord.MessageCreate{
 		Content: melonBirthdayMessage,
 		AllowedMentions: &discord.AllowedMentions{
 			Parse: []discord.AllowedMentionType{discord.AllowedMentionTypeEveryone},
@@ -40,5 +49,8 @@ func (m *MelonBirthday) Run() {
 }
 
 func (m *MelonBirthday) Next(t time.Time) time.Time {
+	if m.debug {
+		return t.Add(15 * time.Second)
+	}
 	return melonBirthdayNext(t)
 }
