@@ -1,6 +1,6 @@
 module cantaloupe-v2
 
-go 1.21
+go 1.23
 
 require (
 	github.com/MrMelon54/exit-reload v0.0.1
