@@ -1,26 +1,23 @@
 module cantaloupe-v2
 
-go 1.23
-toolchain go1.24.1
+go 1.24
 
 require (
-	github.com/MrMelon54/exit-reload v0.0.1
-	github.com/disgoorg/disgo v0.16.8
-	github.com/disgoorg/snowflake/v2 v2.0.1
+	github.com/disgoorg/disgo v0.18.15
+	github.com/disgoorg/snowflake/v2 v2.0.3
 	github.com/joho/godotenv v1.5.1
+	github.com/mrmelon54/exit-reload v0.0.2
 	github.com/robfig/cron/v3 v3.0.1
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/disgoorg/json v1.1.0 // indirect
-	github.com/disgoorg/log v1.2.1 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/disgoorg/json v1.2.0 // indirect
+	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/sasha-s/go-csync v0.0.0-20210812194225-61421b77c44b // indirect
-	golang.org/x/crypto v0.35.0 // indirect
-	golang.org/x/exp v0.0.0-20220325121720-054d8573a5d8 // indirect
-	golang.org/x/sys v0.30.0 // indirect
+	github.com/sasha-s/go-csync v0.0.0-20240107134140-fcbab37b09ad // indirect
+	golang.org/x/crypto v0.37.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

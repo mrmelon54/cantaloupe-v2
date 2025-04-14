@@ -4,7 +4,7 @@ import (
 	"cantaloupe-v2/jobs"
 	"context"
 	"flag"
-	exitReload "github.com/MrMelon54/exit-reload"
+	exitReload "github.com/mrmelon54/exit-reload"
 	"github.com/disgoorg/disgo"
 	"github.com/disgoorg/disgo/bot"
 	"github.com/disgoorg/disgo/cache"
